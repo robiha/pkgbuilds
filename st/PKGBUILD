@@ -17,11 +17,15 @@ conflicts=("${_pkgname}")
 
 source=("git://git.suckless.org/st"
         "config.h"
-        "st.desktop")
+        "st.desktop"
+	"st-icon-20171120-247073c.diff"
+	"icon.argb")
 
 md5sums=('SKIP'
          'a64f11221f502940838a4d56fb746916'
-         '9d28c8fae30036b68d2a0f5504252682')
+         '9d28c8fae30036b68d2a0f5504252682'
+         'e5b8ad0934be5a8faf49f764510d0366'
+         '4333f3007a526d97cb74c6dbe05e57bc')
 
 pkgver() {
 	cd "${_pkgname}"
@@ -46,6 +50,9 @@ prepare() {
 			patch -Np1 <"$srcdir/$(basename ${file})"
 		fi
 	done
+
+	# Needed for the icon patch
+	cp "${srcdir}/icon.argb" ./
 
 }
 
