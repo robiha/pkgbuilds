@@ -19,13 +19,15 @@ source=("git://git.suckless.org/st"
         "config.h"
         "st.desktop"
 	"st-icon-20171120-247073c.diff"
-	"icon.argb")
+	"icon.argb"
+	"st.svg")
 
 md5sums=('SKIP'
          'a64f11221f502940838a4d56fb746916'
-         '9d28c8fae30036b68d2a0f5504252682'
+         'fb3a8e83f84f18aec09e89a60569f086'
          'e5b8ad0934be5a8faf49f764510d0366'
-         '4333f3007a526d97cb74c6dbe05e57bc')
+         '4333f3007a526d97cb74c6dbe05e57bc'
+         'ebe50386dbdefbc6fd171fdf3120f90c')
 
 pkgver() {
 	cd "${_pkgname}"
@@ -67,4 +69,5 @@ package() {
 	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
 	install -Dm644 "${srcdir}/st.desktop" "${pkgdir}/usr/share/applications/st.desktop"
+	install -Dm644 "${srcdir}/st.svg"  "${pkgdir}/usr/share/st/st.svg"
 }
