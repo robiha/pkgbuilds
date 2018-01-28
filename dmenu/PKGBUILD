@@ -1,31 +1,23 @@
 # Maintainer: robiha <hallin.rel@gmail.com>
 
-pkgname=st-git
-_pkgname=st
-pkgver=0.7.r41.g1f24bde
+pkgname=dmenu-git
+_pkgname=dmenu
+pkgver=4.7.r6.g8895128
 pkgrel=1
 epoch=1
-pkgdesc='Simple virtual terminal emulator for X'
-url='https://st.suckless.org/'
+pkgdesc='A generic menu for X'
+url='https://tools.suckless.org/dmenu/'
 arch=('i686' 'x86_64')
 license=('MIT')
 options=('zipman')
-depends=('libxft' 'otf-fira-mono')
-makedepends=('ncurses' 'libxext' 'git')
+depends=('libxinerama' 'libxft' 'otf-fira-mono')
+makedepends=('git')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 
-source=("git://git.suckless.org/${_pkgname}"
-	"st-myconfig.diff"
-	"st-scrollback-20170329-149c0d3.diff"
-        "st.desktop"
-	"st.svg")
+source=("git://git.suckless.org/${_pkgname}")
 
-md5sums=('SKIP'
-         '6cc9179749268cf5c1c0014aee9850ce'
-         'd858964e5123f6279a6f45ad57131ad7'
-         'fb3a8e83f84f18aec09e89a60569f086'
-         'ebe50386dbdefbc6fd171fdf3120f90c')
+md5sums=('SKIP')
 
 pkgver() {
 	cd "${_pkgname}"
@@ -36,9 +28,6 @@ prepare() {
 	local file
 	cd "${_pkgname}"
 	
-	# Skip terminfo which conflicts with ncurses
-	sed -i '/tic /d' Makefile
-
 	for file in "${source[@]}"; do
 		if [[ "$file" == "config.h" ]]; then
 			# add config.h if present in source array
@@ -50,10 +39,6 @@ prepare() {
 			patch -Np1 <"$srcdir/$(basename ${file})"
 		fi
 	done
-
-	# Needed for the icon patch
-	# cp "${srcdir}/icon.argb" ./
-
 }
 
 build() {
@@ -65,7 +50,4 @@ package() {
 	cd "${_pkgname}"
 	make PREFIX=/usr DESTDIR="${pkgdir}" install
 	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
-	install -Dm644 README "${pkgdir}/usr/share/doc/${_pkgname}/README"
-	install -Dm644 "${srcdir}/st.desktop" "${pkgdir}/usr/share/applications/st.desktop"
-	install -Dm644 "${srcdir}/st.svg"  "${pkgdir}/usr/share/st/st.svg"
 }
