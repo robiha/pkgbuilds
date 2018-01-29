@@ -20,15 +20,11 @@ provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 
 source=("git://git.suckless.org/${_pkgname}"
-	"dwm-myconfig.diff"
-	"dwm-swallow-20170909-ceac8c9.diff"
-	"dwm-pertag-20170513-ceac8c9.diff"
+	"my-config.diff"
 	"dwm.desktop")
 
 md5sums=('SKIP'
-         '831ce20c52c5ca5d7108d1ccf3968501'
-         '45c10f942e395ee6ac805ba936035d5f'
-         '31899b188639fef08753e8095f603f58'
+         '0c073873dcac9c22a16054cc7feb2074'
          '939f403a71b6e85261d09fc3412269ee')
 
 pkgver() {

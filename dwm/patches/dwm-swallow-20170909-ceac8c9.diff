@@ -1,3 +1,32 @@
+From 16cfa88ca5ee5f93f62953cc5ed2355417d51420 Mon Sep 17 00:00:00 2001
+From: Joshua Haase <hahj87@gmail.com>
+Date: Sat, 9 Sep 2017 17:07:40 -0500
+Subject: [PATCH] Apply swallow patch.
+
+---
+ config.def.h |   7 ++-
+ config.mk    |   2 +-
+ dwm.c        | 190 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 3 files changed, 190 insertions(+), 9 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index a9ac303..2d26a23 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -26,9 +26,10 @@ static const Rule rules[] = {
+ 	 *	WM_CLASS(STRING) = instance, class
+ 	 *	WM_NAME(STRING) = title
+ 	 */
+-	/* class      instance    title       tags mask     isfloating   monitor */
+-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
++	/* class      instance    title       tags mask     isfloating   isterminal noswallow monitor */
++	{ "Gimp",     NULL,       NULL,       0,            1,           0,         0,        -1 },
++	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           0,         0,        -1 },
++	{ "st",       NULL,       NULL,       0,            0,           1,         1,        -1 },
+ };
+ 
+ /* layout(s) */
 diff --git a/config.mk b/config.mk
 index 80dc936..5ed14e3 100644
 --- a/config.mk
@@ -317,3 +346,6 @@ index a5ce993..20b635b 100644
  	checkotherwm();
  	setup();
  	scan();
+-- 
+2.14.1
+

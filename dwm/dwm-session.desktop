@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Dwm-session
+Comment=Dynamic window manager session
+Exec=dwm-session
+Icon=dwm
+Type=XSession
+Name[sv_SE]=Dwm-session

@@ -1,0 +1,27 @@
+#!/bin/mksh
+# Description: dwm session script.
+
+# when we die, take everyone with us.
+function die {
+	kill $(jobs -p)
+}
+trap die EXIT SIGHUP SIGINT SIGQUIT SIGTERM
+
+# files to source.
+files=(
+	"${HOME}/.autostart"
+)
+for f in "${files[@]}"; do
+	[[ -r "${f}" ]] && . "${f}"
+done
+
+# restart dwm if binary has change.
+csum=$(sha1sum $(which dwm))
+new_csum=""
+while [[ "${csum}" != "${new_csum}" ]]; do
+	csum=${new_csum}
+	# run dwm; blocks until exit.
+	dwm
+	# calculate sum to see if we run again.
+	new_csum=$(sha1sum $(which dwm))
+done

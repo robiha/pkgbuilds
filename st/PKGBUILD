@@ -16,14 +16,12 @@ provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 
 source=("git://git.suckless.org/${_pkgname}"
-	"st-myconfig.diff"
-	"st-scrollback-20170329-149c0d3.diff"
-        "st.desktop"
+	"my-config.diff"
+	"st.desktop"
 	"st.svg")
 
 md5sums=('SKIP'
-         '6cc9179749268cf5c1c0014aee9850ce'
-         'd858964e5123f6279a6f45ad57131ad7'
+         '4715833e2185d4cf54f81a8df3301119'
          'fb3a8e83f84f18aec09e89a60569f086'
          'ebe50386dbdefbc6fd171fdf3120f90c')
 
