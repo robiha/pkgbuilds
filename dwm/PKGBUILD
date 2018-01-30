@@ -21,10 +21,14 @@ conflicts=("${_pkgname}")
 
 source=("git://git.suckless.org/${_pkgname}"
 	"my-config.diff"
+	"dwm-session"
+	"dwm-session.desktop"
 	"dwm.desktop")
 
 md5sums=('SKIP'
-         '3dc9523cae7717d347071b4eab7cb5f3'
+         '133dc2cdc29b2fcfcf0bada2ba425660'
+         '0d60ab2abf7928c60973cac0a250b72c'
+         '1433959c9dd2bae42bf21d924cee8f0a'
          '939f403a71b6e85261d09fc3412269ee')
 
 pkgver() {
@@ -57,7 +61,9 @@ build() {
 package() {
 	cd "${_pkgname}"
 	make PREFIX=/usr DESTDIR="${pkgdir}" install
+	install -Dm755 "${srcdir}/dwm-session" "${pkgdir}/usr/bin/dwm-session"
 	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
 	install -Dm644 README "${pkgdir}/usr/share/doc/${_pkgname}/README"
 	install -Dm644 "${srcdir}/dwm.desktop" "${pkgdir}/usr/share/xsessions/dwm.desktop"
+	install -Dm644 "${srcdir}/dwm-session.desktop" "${pkgdir}/usr/share/xsessions/dwm-session.desktop"
 }

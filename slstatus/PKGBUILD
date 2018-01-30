@@ -1,0 +1,63 @@
+# Maintainer: robiha <hallin.rel@gmail.com>
+
+pkgname=slstatus-git
+_pkgname=slstatus
+pkgver=0.1
+pkgrel=1
+epoch=1
+pkgdesc="Status monitor"
+url="https://tools.suckless.org/slstatus"
+arch=('i686' 'x86_64')
+license=('MIT')
+options=('zipman')
+depends=('libx11')
+makedepends=('git')
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+
+source=("git://git.suckless.org/${_pkgname}"
+	"my-config.diff")
+
+md5sums=('SKIP'
+         '5d3af4491578cb35103eefeee8460634')
+
+#pkgver() {
+	#cd "${_pkgname}"
+	#git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+#}
+
+prepare() {
+	local file
+	cd "${_pkgname}"
+	
+	# Skip terminfo which conflicts with ncurses
+	sed -i '/tic /d' Makefile
+
+	for file in "${source[@]}"; do
+		if [[ "$file" == "config.h" ]]; then
+			# add config.h if present in source array
+			# Note: this supersedes the above sed to config.def.h
+			cp "$srcdir/$file" .
+		elif [[ "$file" == *.diff || "$file" == *.patch ]]; then
+			# add all patches present in source array
+			echo "Applying patch $(basename $file)..."
+			patch -Np1 <"$srcdir/$(basename ${file})"
+		fi
+	done
+
+	# Needed for the icon patch
+	# cp "${srcdir}/icon.argb" ./
+
+}
+
+build() {
+	cd "${_pkgname}"
+	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+	cd "${_pkgname}"
+	make PREFIX=/usr DESTDIR="${pkgdir}" install
+	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
+	install -Dm644 README "${pkgdir}/usr/share/doc/${_pkgname}/README"
+}

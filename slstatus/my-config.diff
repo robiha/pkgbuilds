@@ -1,0 +1,26 @@
+diff --git a/config.def.h b/config.def.h
+index 6370008..c0464c7 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,7 +1,7 @@
+ /* See LICENSE file for copyright and license details. */
+ 
+ /* interval between updates (in ms) */
+-static const int interval = 1000;
++static const int interval = 15000;
+ 
+ /* text to show if no value can be retrieved */
+ static const char unknown_str[] = "n/a";
+@@ -51,7 +51,9 @@ static const char unknown_str[] = "n/a";
+  */
+ static const struct arg args[] = {
+ 	/* function format          argument */
+-	{ cpu_perc, "[CPU %3s%%] ", NULL    },
+-	{ ram_perc, "[RAM %2s%%] ", NULL    },
+-	{ datetime, "[ %s ]",       "%F %T" },
++	{ battery_perc, "| BAT0:%s%%", "BAT0"},
++	{ battery_state, "%s ", "BAT0"},
++	{ wifi_essid, "| SSID:%s", "wlp36s0b1"},
++	{ wifi_perc, "@%s%% ", "wlp36s0b1"},
++	{ datetime, "| %s |", "%F %H:%M" },
+ };
