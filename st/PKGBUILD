@@ -21,7 +21,7 @@ source=("git://git.suckless.org/${_pkgname}"
 	"st.svg")
 
 md5sums=('SKIP'
-         '4715833e2185d4cf54f81a8df3301119'
+         '3e8065b0f6c866a49c84518e2cf2c54c'
          'fb3a8e83f84f18aec09e89a60569f086'
          'ebe50386dbdefbc6fd171fdf3120f90c')
 

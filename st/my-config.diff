@@ -1,18 +1,16 @@
 diff --git a/config.def.h b/config.def.h
-index 877afab..4d79e05 100644
+index 877afab..0405358 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -5,8 +5,8 @@
+@@ -5,7 +5,7 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
   */
 -char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
--int borderpx = 2;
-+char font[] = "Fira Mono:pixelsize=12:antialias=true:autohint=true";
-+int borderpx = 1;
++char font[] = "Fira Mono:size=10:antialias=true:autohint=true";
+ int borderpx = 2;
  
  /*
-  * What program is execed by st depends of these precedence rules:
 @@ -32,7 +32,7 @@ float chscale = 1.0;
   *
   * More advanced example: " `'\"()[]{}"
@@ -79,10 +77,12 @@ index 877afab..4d79e05 100644
   * Default colors (colorname index)
   * foreground, background, cursor, reverse cursor
   */
- unsigned int defaultfg = 7;
- unsigned int defaultbg = 0;
+-unsigned int defaultfg = 7;
+-unsigned int defaultbg = 0;
 -unsigned int defaultcs = 256;
-+unsigned int defaultcs = 4;
++unsigned int defaultfg = 257;
++unsigned int defaultbg = 256;
++unsigned int defaultcs = 12;
  unsigned int defaultrcs = 257;
  
  /*

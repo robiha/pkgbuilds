@@ -24,7 +24,7 @@ source=("git://git.suckless.org/${_pkgname}"
 	"dwm.desktop")
 
 md5sums=('SKIP'
-         '0c073873dcac9c22a16054cc7feb2074'
+         '3dc9523cae7717d347071b4eab7cb5f3'
          '939f403a71b6e85261d09fc3412269ee')
 
 pkgver() {
