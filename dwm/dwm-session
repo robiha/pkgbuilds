@@ -1,13 +1,13 @@
 #!/bin/mksh
 # Description: dwm session script.
 
-# when we die, take everyone with us.
+# When we die, take everyone with us.
 function die {
 	kill $(jobs -p)
 }
 trap die EXIT SIGHUP SIGINT SIGQUIT SIGTERM
 
-# files to source.
+# Files to source.
 files=(
 	"${HOME}/.autostart"
 )
@@ -15,13 +15,17 @@ for f in "${files[@]}"; do
 	[[ -r "${f}" ]] && . "${f}"
 done
 
-# restart dwm if binary has change.
+# Restart dwm if binary has change.
 csum=$(sha1sum $(which dwm))
 new_csum=""
-while [[ "${csum}" != "${new_csum}" ]]; do
-	csum=${new_csum}
-	# run dwm; blocks until exit.
+while true
+do
 	dwm
-	# calculate sum to see if we run again.
 	new_csum=$(sha1sum $(which dwm))
+	if [[ "${csum}" != "${new_csum}" ]]
+	then
+		csum=${new_csum}
+	else
+		exit 0
+	fi
 done

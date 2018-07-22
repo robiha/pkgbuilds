@@ -1,6 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Dwm-session
+Name=dwm-session
 Comment=Dynamic window manager session
 Exec=dwm-session
 Icon=dwm
